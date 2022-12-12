@@ -1,20 +1,18 @@
-# Import module
+# импорт
 import sqlite3
 
-# Connecting to sqlite
+# подключение к базе
 conn = sqlite3.connect('phonebook.db')
 
-# Creating a cursor object using the
-# cursor() method
+# SQL-запросы
 cursor = conn.cursor()
 
 data=cursor.execute('''SELECT * FROM PHONEBOOK''')
 for row in data:
     print(row)
 
-# Commit your changes in
-# the database
+# коммит изменений
 conn.commit()
 
-# Closing the connection
+# закрытие соединения
 conn.close()
