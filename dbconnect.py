@@ -1,22 +1,31 @@
 import sqlite3
-import PhoneClasses
+import os
 
+path = os.getcwd()
+print(path)
+connstring = f'{path}\phonebook.db'
 
 # импорт просмотр всей базы
 def view():
-    conn = sqlite3.connect('phonebook.db')
+    conn = sqlite3.connect(connstring)
     cursor = conn.cursor()
     data = cursor.execute('''SELECT * FROM PHONEBOOK''')
+    tuplePB = []
     for row in data:
         print(row)
-    conn.commit()
-    conn.close()
-    return data
+        id = row[0]
+        lastname = row[1]
+        firstname = row[2]
+        phone = row[3]
+        description = row[4]
+        entry = (id, lastname, firstname, phone, description)
+        tuplePB.append(entry)
+    return tuplePB
 
 
 # вставка записи
 def insert(lastname, firstname, phone, description):
-    conn = sqlite3.connect('phonebook.db')
+    conn = sqlite3.connect(connstring)
     cursor = conn.cursor()
     dbstring = f'''INSERT INTO PHONEBOOK (LASTNAME, FIRSTNAME, PHONE, DESCRIPTION) VALUES 
             ('{lastname}', '{firstname}', '{phone}', '{description}')'''
@@ -26,7 +35,7 @@ def insert(lastname, firstname, phone, description):
 
 
 def select_lastname(lastname):
-    conn = sqlite3.connect('phonebook.db')
+    conn = sqlite3.connect(connstring)
     cursor = conn.cursor()
     dbstring = f'''SELECT * FROM PHONEBOOK WHERE 
             LASTNAME = "{lastname}"'''
@@ -37,8 +46,21 @@ def select_lastname(lastname):
     return rows
 
 
+def select_full(lastname, firstname, phone, description):
+    conn = sqlite3.connect(connstring)
+    cursor = conn.cursor()
+    dbstring = f'''SELECT * FROM PHONEBOOK WHERE 
+            LASTNAME = "{lastname}" AND FIRSTNAME = "{firstname}" AND PHONE = "{phone}" AND DESCRIPTION = "{description}"'''
+    data = cursor.execute(dbstring)
+    rows = cursor.fetchall()
+    for row in data:
+        print(row)
+    return rows
+
+
+
 def delete_by_id(id):
-    conn = sqlite3.connect('phonebook.db')
+    conn = sqlite3.connect(connstring)
     dbstring = f'DELETE FROM PHONEBOOK WHERE id={id}'
     cursor = conn.cursor()
     cursor.execute(dbstring)
