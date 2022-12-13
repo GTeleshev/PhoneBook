@@ -1,7 +1,7 @@
 import dbconnect
 class Entry:
 
-    def __init__(self, lastname, firstname, phone, description):
+    def __init__(self, lastname = '', firstname= '', phone = '', description = ''):
         self.lastname = lastname
         self.firstname = firstname
         self.phone = phone

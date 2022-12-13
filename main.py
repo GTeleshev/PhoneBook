@@ -10,6 +10,19 @@ print(petrov.firstname)
 print(petrov.phone)
 print(petrov.description)
 
+sidorov = PClasses.Entry()
+sidorov.firstname = 'Алексей'
+sidorov.lastname = 'Сидоров'
+sidorov.phone = '123'
+sidorov.description = 'домашний'
+
+print(sidorov.lastname)
+print(sidorov.firstname)
+print(sidorov.phone)
+print(sidorov.description)
+
+sidorov.add_db()
+
 dbconnect.select_lastname(petrov.lastname)
 dbconnect.select_lastname('Филатов')
 rows = dbconnect.select_lastname('Филатов')
