@@ -19,6 +19,7 @@ def view():
         phone = row[3]
         description = row[4]
         entry = (id, lastname, firstname, phone, description)
+        # entry = row
         tuplePB.append(entry)
     return tuplePB
 
