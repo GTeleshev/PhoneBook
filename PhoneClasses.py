@@ -12,3 +12,8 @@ class Entry:
 
     def add_db(self):
         dbconnect.insert(self.lastname, self.firstname, self.phone, self.description)
+
+    def get_id(self):
+        user_tuple = dbconnect.select_full(self.lastname, self.firstname, self.phone, self.description)
+        id = user_tuple[0][0]
+        return id
