@@ -1,37 +1,47 @@
 import dbconnect
 import PhoneClasses as PClasses
 
-dbconnect.view()
 
-petrov = PClasses.Entry(lastname='Петров', firstname='Александр', phone='+7954318795',description='рабочий')
+def check_menu(option):
+    print('Работает функция №: ', option)
 
-print(petrov.lastname)
-print(petrov.firstname)
-print(petrov.phone)
-print(petrov.description)
 
-sidorov = PClasses.Entry()
-sidorov.firstname = 'Алексей'
-sidorov.lastname = 'Сидоров'
-sidorov.phone = '123'
-sidorov.description = 'домашний'
+def check_numeric(message, min_, max_):
+    out = -100
+    check = False
+    while not check or out > max_ or out < min_:
+        str_out = input(message)
+        if not str_out.isdigit():
+            check = False
+        else:
+            out = int(str_out)
+            check = True
+    return out
 
-# print(sidorov.lastname)
-# print(sidorov.firstname)
-# print(sidorov.phone)
-# print(sidorov.description)
 
-# sidorov.add_db()
+def main_menu():
+    print("Телефонный справочник x.x")
+    options = {1: "Добавление записей",
+               2: "Вывод на экран",
+               3: "Импорт",
+               4: "Экспорт",
+               5: "Удаление записей",
+               6: "Поиск",
+               7: "Завершить работу"}
+    pass
+    functions = {1: check_menu,
+             2: check_menu,
+             3: check_menu,
+             4: check_menu,
+             5: check_menu,
+             6: check_menu,
+             7: check_menu}
+    for iter in options.keys():
+        print(iter, options[iter])
+    option = check_numeric("Выберите действие: ", 1, 8)
+    print("Выбрано: ", options[option])
+    functions[option](option) # можно передавать без аргумента "()"
+    return option
 
-dbconnect.select_lastname(petrov.lastname)
-dbconnect.select_lastname('Филатов')
-rows = dbconnect.select_lastname('Филатов')
-# print(rows)
-# print(type(rows))
 
-# PClasses.Entry.printentry(petrov)
-
-# dbconnect.insert(petrov.lastname, petrov.firstname, petrov.phone, petrov.description)
-# PClasses.Entry.add_db(petrov)
-# dbconnect.delete_by_id(10)
-dbconnect.view()
+main_menu()
