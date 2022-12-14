@@ -2,7 +2,7 @@ from Notes import Notes
 
 notes = Notes()
 
-PBVERSION = '1.0.1'
+PBVERSION = '1.1'
 
 def get_notes():
     data_dict = notes.get_all()
@@ -35,6 +35,7 @@ def import_data():
         file_type = input('Введите расширение (json / csv / sql, json - по умолчанию): ')
         temp = notes.import_notes(file_name, file_type)
         if temp is not False:
+            notes.end()
             break
 
 # def search(self, lastname):
@@ -53,10 +54,12 @@ def delete_record():
         id_ = input('Введите ID: ')
         if id_.isdigit():
             notes.delete_by_id(id_)
+            notes.end()
             break
 
 def purge_database():
     notes.clear_all()
+    notes.end()
 
 def exit_phonebook():
     notes.end()
