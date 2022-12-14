@@ -28,7 +28,7 @@ print(dbconnect.view())
 
 
 def csv_export(file_name):
-    data = dbconnect.view()
+    data = dbconnect.view() # notes get_all
     with open(file_name, 'w', newline="") as file:
         csvwriter = csv.writer(file, delimiter = ';')
         csvwriter.writerow(['id','lastname','firstname','phone','description'])

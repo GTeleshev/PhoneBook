@@ -1,6 +1,25 @@
 import dbconnect
-import PhoneClasses as PClasses
+from Notes import Notes
 
+notes = Notes()
+
+
+def get_notes():
+    print(notes.get_all()) #TODO причесать вывод
+
+def add_record():
+    data_list = []
+    data_list.append(input('Введите фамилию: '))
+    data_list.append(input('Введите имя: '))
+    data_list.append(input('Введите телефон: '))
+    data_list.append(input('Введите описание: '))
+    notes.add_note(data_list)
+    notes.end()
+    main_menu()
+
+def exit_phonebook():
+    notes.end()
+    exit()
 
 def check_menu(option):
     print('Работает функция №: ', option)
@@ -28,19 +47,19 @@ def main_menu():
                5: "Удаление записей",
                6: "Поиск",
                7: "Завершить работу"}
-    pass
-    functions = {1: check_menu,
-             2: check_menu,
+    functions = {1: add_record,
+             2: get_notes,
              3: check_menu,
              4: check_menu,
              5: check_menu,
              6: check_menu,
-             7: check_menu}
+             7: exit_phonebook}
     for iter in options.keys():
         print(iter, options[iter])
     option = check_numeric("Выберите действие: ", 1, 8)
     print("Выбрано: ", options[option])
-    functions[option](option) # можно передавать без аргумента "()"
+    functions[option]() # можно передавать без аргумента "()"
+    main_menu()
     return option
 
 
