@@ -12,7 +12,7 @@ def view():
     data = cursor.execute('''SELECT * FROM PHONEBOOK''')
     tuplePB = []
     for row in data:
-        print(row)
+        # print(row)
         id = row[0]
         lastname = row[1]
         firstname = row[2]
