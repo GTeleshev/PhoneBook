@@ -5,7 +5,7 @@ import sqlite3
 class ConnectDb:
     def __init__(self, name_file='phonebook.db'):
         path = os.getcwd()
-        self.connstring = f'{path}\{name_file}'# + path
+        self.connstring = f'{name_file}'
         self.all_data = self.select_all_db()
         self.all_data_dict = self.from_sql_to_dict()
     
