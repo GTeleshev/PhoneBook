@@ -2,7 +2,7 @@ from Notes import Notes
 
 notes = Notes()
 
-PBVERSION = '1.0'
+PBVERSION = '1.0.1'
 
 def get_notes():
     data_dict = notes.get_all()
