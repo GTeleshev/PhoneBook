@@ -26,6 +26,8 @@ sidorov.description = 'домашний'
 dbconnect.select_lastname(petrov.lastname)
 dbconnect.select_lastname('Филатов')
 rows = dbconnect.select_lastname('Филатов')
+
+print(dbconnect.from_db_to_dict(dbconnect.connstring))
 # print(rows)
 # print(type(rows))
 
@@ -34,4 +36,4 @@ rows = dbconnect.select_lastname('Филатов')
 # dbconnect.insert(petrov.lastname, petrov.firstname, petrov.phone, petrov.description)
 # PClasses.Entry.add_db(petrov)
 # dbconnect.delete_by_id(10)
-dbconnect.view()
+# dbconnect.view()

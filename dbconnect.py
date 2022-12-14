@@ -3,7 +3,7 @@ import os
 
 path = os.getcwd()
 print(path)
-connstring = f'{path}\phonebook.db'
+connstring = f'phonebook.db'
 
 # импорт просмотр всей базы
 def view():
@@ -65,3 +65,19 @@ def delete_by_id(id):
     cursor = conn.cursor()
     cursor.execute(dbstring)
     conn.commit()
+
+
+def from_db_to_dict(connstring):
+    conn = sqlite3.connect(connstring)
+    cursor = conn.cursor()
+    data = cursor.execute('''SELECT * FROM PHONEBOOK''')
+    res = {}
+    for id, row in enumerate(data):
+        res[id] = {
+            'lastname': row[1],
+            'firstname': row[2],
+            'phone': row[3],
+            'description': row[4]
+        }
+    return res
+
